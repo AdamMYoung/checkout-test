@@ -1,15 +1,6 @@
 import { useMemo, VFC } from 'react';
-import {
-    ChartLabel,
-    HorizontalBarSeries,
-    HorizontalGridLines,
-    VerticalBarSeries,
-    VerticalGridLines,
-    XAxis,
-    XYPlot,
-    XYPlotProps,
-    YAxis,
-} from 'react-vis';
+import { HorizontalBarSeries, XAxis, XYPlot, XYPlotProps, YAxis } from 'react-vis';
+
 import { tickIntegerFormat } from '../../../utils';
 
 export type StarRating<T extends number> = {
@@ -30,11 +21,9 @@ export const RatingChart: VFC<RatingChartProps> = ({ ratings, ...rest }) => {
 
     return (
         <XYPlot {...rest}>
-            <HorizontalBarSeries barWidth={0.9} data={data} />
-            <VerticalGridLines />
-            <HorizontalGridLines />
             <XAxis tickFormat={tickIntegerFormat} />
             <YAxis tickFormat={tickIntegerFormat} />
+            <HorizontalBarSeries barWidth={0.9} data={data} />
         </XYPlot>
     );
 };

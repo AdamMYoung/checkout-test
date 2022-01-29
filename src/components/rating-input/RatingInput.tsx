@@ -1,7 +1,6 @@
 import { StarIcon } from '@chakra-ui/icons';
 import { Flex, FlexProps, IconButton, IconButtonProps } from '@chakra-ui/react';
 import { createContext } from '@chakra-ui/react-utils';
-
 import { FC, useState, VFC } from 'react';
 
 export type RatingInputProps = FlexProps & {
@@ -61,21 +60,10 @@ export const [RatingProvider, useRatingContext] = createContext<RatingInputConte
  * Interactive control for setting ratings. By default, the element used is a `RatingControlButton`, but this can be overridden
  * by providing a child render function.
  */
-export const RatingInput: FC<RatingInputProps> = ({
-    max = 5,
-    initialValue = 0,
-    value,
-    onRatingChanged,
-    children,
-    ...rest
-}) => {
+export const RatingInput: FC<RatingInputProps> = (props) => {
+    const { max = 5, initialValue = 0, value, onRatingChanged, children, ...rest } = props;
     const [rating, setRating] = useState(initialValue);
 
-    /**
-     *  Handles the toggle of ratings selected by the user. If the same rating is selected,
-     *  it will be deselected.
-     * @param rating Rating selected by the user.
-     */
     const handleRatingChanged = (newRating: number) => {
         setRating(newRating);
         onRatingChanged?.(newRating);

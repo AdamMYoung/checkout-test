@@ -35,6 +35,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             const payload = { ...JSON.parse(body), createAt: new Date().toISOString() };
 
             reviews.splice(0, 0, payload);
-            res.status(201).send(reviews);
+            res.status(201).send([payload]);
     }
 }

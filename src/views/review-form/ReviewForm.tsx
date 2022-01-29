@@ -55,6 +55,7 @@ export const ReviewForm = () => {
     return (
         <Formik
             onSubmit={handleSubmit}
+            isInitialValid={false}
             initialValues={{ emailAddress: '', name: '', rating: 0, comment: '' }}
             validationSchema={createReviewPayloadSchema}
         >

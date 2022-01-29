@@ -1,4 +1,4 @@
-import { Box, Heading, HeadingProps, Stack, StackProps, Text, TextProps } from '@chakra-ui/react';
+import { Heading, HeadingProps, Stack, StackProps, Text, TextProps } from '@chakra-ui/react';
 import { FC, VFC } from 'react';
 
 import { Rating, RatingProps } from '..';
