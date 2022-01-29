@@ -25,7 +25,7 @@ export function validationMiddleware<TSchema extends ObjectShape>(validator: Obj
         const { body } = req;
 
         try {
-            await validator.validate(body);
+            await validator.validate(JSON.parse(body));
             next(body);
         } catch (e) {
             res.status(422).json({ errors: e });

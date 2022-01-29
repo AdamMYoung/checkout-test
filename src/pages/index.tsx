@@ -1,14 +1,27 @@
+import { Box, Flex, Text, Stack, Divider, Grid, Heading, HStack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useMemo } from 'react';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import dayjs from 'dayjs';
 
-import { Layout } from '../components';
+import { reviewsToStarRatings } from '../../utils';
+
+import { Comment, CommentAuthor, CommentDate, CommentRating, CommentText, Rating, RatingInput } from '../components';
 import { Review } from '../types';
+import { RatingChart, ReviewForm } from '../views';
 
 type HomeProps = {
     reviews: Review[];
 };
 
 const Home: NextPage<HomeProps> = ({ reviews }) => {
+    const chartData = useMemo(() => reviewsToStarRatings(reviews), [reviews]);
+    const averageRating = useMemo(
+        () => reviews.reduce((acc, { rating }) => acc + rating, 0) / reviews.length,
+        [reviews]
+    );
+
     return (
         <>
             <Head>
@@ -17,11 +30,63 @@ const Home: NextPage<HomeProps> = ({ reviews }) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Layout>
-                {reviews.map((review) => (
-                    <div key={review.createdAt + review.name}>{review.name}</div>
-                ))}
-            </Layout>
+            <Stack spacing="16">
+                <Grid gap="8" gridTemplateColumns={['1fr', null, '1.5fr 1fr']}>
+                    {/* New Review */}
+                    <Stack spacing="8" order={[2, null, 1]}>
+                        <Heading as="h2" size="xl">
+                            New Review
+                        </Heading>
+                        <ReviewForm />
+                    </Stack>
+
+                    {/* Review Breakdown */}
+                    <Stack spacing="8" order={[1, null, 2]}>
+                        <Heading as="h2" size="xl">
+                            Customer Reviews
+                        </Heading>
+
+                        <Stack>
+                            <Box minHeight={64} maxHeight="8rem" mx={[4, null, 0]} h="full">
+                                <AutoSizer>
+                                    {({ height, width }) => (
+                                        <RatingChart width={width} height={height} ratings={chartData} />
+                                    )}
+                                </AutoSizer>
+                            </Box>
+                            <Text fontWeight="bold" alignSelf="center">
+                                Average Rating
+                            </Text>
+                            <Flex gap="2" w="full" justifyContent="center">
+                                <Rating value={Math.round(averageRating)} />
+                                <Text>({averageRating.toFixed(2)})</Text>
+                            </Flex>
+                        </Stack>
+                    </Stack>
+                </Grid>
+
+                <Divider />
+
+                {/* Comments */}
+                <Stack spacing="8">
+                    <Heading as="h2">Comments</Heading>
+
+                    <Stack spacing="8" divider={<Divider />}>
+                        {reviews.map((review) => (
+                            <Comment key={review.createdAt + review.name}>
+                                <Stack spacing="0">
+                                    <HStack spacing="4">
+                                        <CommentRating value={review.rating} />
+                                        <CommentAuthor>{review.name}</CommentAuthor>
+                                    </HStack>
+                                    <CommentDate>{dayjs(review.createdAt).format('DD MMMM YYYY')}</CommentDate>
+                                </Stack>
+                                <CommentText>{review.comment}</CommentText>
+                            </Comment>
+                        ))}
+                    </Stack>
+                </Stack>
+            </Stack>
         </>
     );
 };

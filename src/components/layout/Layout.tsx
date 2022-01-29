@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react';
 import { FC } from 'react';
 
 export const Layout: FC = ({ children }) => {
@@ -6,7 +6,9 @@ export const Layout: FC = ({ children }) => {
         <Box>
             {/* Navigation would go here */}
 
-            <Box as="main">{children}</Box>
+            <Container as="main" maxW="container.xl" py="16">
+                {children}
+            </Container>
 
             {/* Footer would go here */}
         </Box>

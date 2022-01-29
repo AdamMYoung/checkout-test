@@ -2,31 +2,23 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { runMiddleware, validationMiddleware } from '../../../utils/api/api';
 import { createReviewPayloadSchema, Review } from '../../types';
+import { faker } from '@faker-js/faker';
 
-// Substituting a DB for now.
-const reviews: Review[] = [
-    {
-        name: 'John Doe',
-        emailAddress: 'john.doe@example.com',
-        rating: 5,
-        createdAt: Date.now().toString(),
-        comment: 'I love this product!',
-    },
-    {
-        name: 'Jane Doe',
-        emailAddress: 'jane.doe@example.com',
-        rating: 1,
-        createdAt: (Date.now() - 2000).toString(),
-        comment: 'I hate this product!',
-    },
-    {
-        name: 'Jonathan Doe',
-        emailAddress: 'jon.doe@example.com',
-        rating: 3,
-        createdAt: (Date.now() - 5000).toString(),
-        comment: 'I think this product is okay, nothing to brag about :/',
-    },
-];
+/**
+ * Function to generate a set of fake reviews, using faker.js.
+ * @param count Number of reviews to return.
+ * @returns A set of `Review` objects.
+ */
+const getFakeReviews = (count: number): Review[] => {
+    return Array.from({ length: count }, () => ({
+        name: faker.name.findName(),
+        rating: faker.datatype.number({ min: 1, max: 5, precision: 1 }) as 1 | 2 | 3 | 4 | 5,
+        createdAt: faker.date.past().toISOString(),
+        comment: faker.lorem.sentence(30),
+    })).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+};
+
+const reviews: Review[] = getFakeReviews(30);
 
 const reviewMiddleware = validationMiddleware(createReviewPayloadSchema);
 
@@ -40,7 +32,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         case 'POST':
             await runMiddleware(req, res, reviewMiddleware);
 
-            reviews.push(body);
-            res.status(201);
+            const payload = { ...JSON.parse(body), createAt: new Date().toISOString() };
+
+            reviews.splice(0, 0, payload);
+            res.status(201).send(reviews);
     }
 }
