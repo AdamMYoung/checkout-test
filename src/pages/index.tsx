@@ -109,10 +109,12 @@ const Breakdown = () => {
 
     //Builds a chart ARIA label from all ratings.
     const chartLabel = useMemo(() => {
+        const ratingSum = chartData.reduce((acc, { ratings }) => acc + ratings, 0);
         let label = 'Overview Chart: ';
 
         chartData.forEach((rating) => {
-            label = `${label}${rating.star} stars: ${rating.ratings} votes, `;
+            const ratingPercentage = (rating.ratings / ratingSum) * 100;
+            label = `${label}${rating.star} stars: ${ratingPercentage.toFixed(0)} percent of votes, `;
         });
 
         return label;
