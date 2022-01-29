@@ -4,12 +4,12 @@ import Head from 'next/head';
 import { useMemo } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import dayjs from 'dayjs';
+import { createContext } from '@chakra-ui/react-utils';
 
 import { reviewsToStarRatings } from '../../utils';
 import { Comment, CommentAuthor, CommentDate, CommentRating, CommentText, Rating } from '../components';
 import { Review } from '../types';
 import { RatingChart, ReviewForm } from '../views';
-import { createContext } from '@chakra-ui/react-utils';
 
 type HomeProps = {
     reviews: Review[];
@@ -26,35 +26,44 @@ const Home: NextPage<HomeProps> = ({ reviews }) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <ReviewProvider value={{ reviews }}>
-                <Stack spacing="16">
-                    <Grid gap="8" gridTemplateColumns={['1fr', null, '1.5fr 1fr']}>
-                        {/* New Review */}
-                        <Stack spacing="8" order={[2, null, 1]}>
-                            <Heading as="h2" size="xl">
-                                New Review
+            <Stack spacing="8">
+                <Heading as="h1" fontSize="5xl">
+                    Product Reviews
+                </Heading>
+
+                <ReviewProvider value={{ reviews }}>
+                    <Stack spacing="16">
+                        <Grid gap="8" gridTemplateColumns={['1fr', null, '1.5fr 1fr']}>
+                            {/* New Review */}
+                            <Stack spacing="8" order={[2, null, 1]}>
+                                <Heading as="h2" size="lg">
+                                    New Review
+                                </Heading>
+                                <ReviewForm />
+                            </Stack>
+
+                            {/* Review Breakdown */}
+                            <Stack spacing="8" order={[1, null, 2]}>
+                                <Heading as="h2" size="lg">
+                                    Customer Reviews
+                                </Heading>
+                                <Breakdown />
+                                <Divider display={['block', null, 'none']} />
+                            </Stack>
+                        </Grid>
+
+                        <Divider />
+
+                        {/* Comments */}
+                        <Stack spacing="8">
+                            <Heading as="h2" size="lg">
+                                Comments
                             </Heading>
-                            <ReviewForm />
+                            <Comments />
                         </Stack>
-
-                        {/* Review Breakdown */}
-                        <Stack spacing="8" order={[1, null, 2]}>
-                            <Heading as="h2" size="xl">
-                                Customer Reviews
-                            </Heading>
-                            <Breakdown />
-                        </Stack>
-                    </Grid>
-
-                    <Divider />
-
-                    {/* Comments */}
-                    <Stack spacing="8">
-                        <Heading as="h2">Comments</Heading>
-                        <Comments />
                     </Stack>
-                </Stack>
-            </ReviewProvider>
+                </ReviewProvider>
+            </Stack>
         </>
     );
 };
@@ -72,7 +81,7 @@ const Comments = () => {
                     <Stack spacing="0">
                         <HStack spacing="4">
                             <CommentRating value={review.rating} />
-                            <CommentAuthor>{review.name}</CommentAuthor>
+                            <CommentAuthor as="h3">{review.name}</CommentAuthor>
                         </HStack>
                         <CommentDate>{dayjs(review.createdAt).format('DD MMMM YYYY')}</CommentDate>
                     </Stack>
@@ -89,16 +98,30 @@ const Comments = () => {
 const Breakdown = () => {
     const { reviews } = useReviewContext();
 
+    //Parses reviews into chart ratings.
     const chartData = useMemo(() => reviewsToStarRatings(reviews), [reviews]);
+
+    //Calculates the average rating from all reviews.
     const averageRating = useMemo(() => {
         const ratingSum = reviews.reduce((acc, { rating }) => acc + rating, 0);
         return ratingSum / reviews.length;
     }, [reviews]);
 
+    //Builds a chart ARIA label from all ratings.
+    const chartLabel = useMemo(() => {
+        let label = 'Overview Chart: ';
+
+        chartData.forEach((rating) => {
+            label = `${label}${rating.star} stars: ${rating.ratings} votes, `;
+        });
+
+        return label;
+    }, [chartData]);
+
     return (
         <Stack>
             {/* Graph */}
-            <Box minHeight={64} maxHeight="8rem" mx={[4, null, 0]} h="full">
+            <Box minHeight={64} maxHeight="8rem" mx={[4, null, 0]} h="full" tabIndex={0} aria-label={chartLabel}>
                 <AutoSizer>
                     {({ height, width }) => <RatingChart width={width} height={height} ratings={chartData} />}
                 </AutoSizer>
@@ -119,14 +142,9 @@ const Breakdown = () => {
 export async function getServerSideProps(context) {
     //Ideally, we'd do the data fetching here rather than in the API route since we'd have fewer hops,
     //however due to persistance of review data, I'm needing to do it there.
-
     const data = await fetch(`${process.env.APPLICATION_URL}/api/reviews`);
 
-    return {
-        props: {
-            reviews: await data.json(),
-        },
-    };
+    return { props: { reviews: await data.json() } };
 }
 
 export default Home;
