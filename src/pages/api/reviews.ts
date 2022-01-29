@@ -22,7 +22,7 @@ const reviews: Review[] = getFakeReviews(30);
 
 const reviewMiddleware = validationMiddleware(createReviewPayloadSchema);
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Review[]>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<Review[] | string | void>) {
     const { method, body } = req;
 
     switch (method) {
@@ -35,6 +35,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             const payload = { ...JSON.parse(body), createAt: new Date().toISOString() };
 
             reviews.splice(0, 0, payload);
-            res.status(201).send([payload]);
+            res.status(201).send();
+            break;
+        default:
+            res.status(405).send('Method not allowed.');
     }
 }
