@@ -35,9 +35,12 @@ export const useRatingChartData = (reviews: Review[]): RatingChartData => {
         //Calculates the average rating from all reviews.
         const averageRating = sumOfRatings / reviews.length;
 
+        //We ignore empty ratings, since these don't apply to the overall percentage
+        const validRatings = ratings.filter(({ ratings }) => ratings > 0);
+
         //Builds an a11y label from all ratings.
         const label = ratings.reduce((prev, current) => {
-            const percentage = (current.ratings / sumOfRatings) * 100;
+            const percentage = (current.ratings / validRatings.length) * 100;
 
             return prev + `${current.star} star: ${percentage.toFixed(0)} percent of votes, `;
         }, 'Overview Chart: ');
