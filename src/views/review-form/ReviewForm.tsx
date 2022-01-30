@@ -8,20 +8,25 @@ import {
     Grid,
     Input,
     Stack,
+    StackProps,
     Textarea,
     useToast,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
+import { useRouter } from 'next/router';
+import { VFC } from 'react';
 
 import { CreateReviewPayload, createReviewPayloadSchema } from '../../types';
 import { RatingInput } from '../../components';
-import { useRouter } from 'next/router';
 
-export const ReviewForm = () => {
+/**
+ * Form used to submit a new review. Encapsulates all logic around page-refresh and error handling.
+ */
+export const ReviewForm: VFC<StackProps> = (props) => {
     const router = useRouter();
     const toast = useToast();
 
-    const handleSubmit = async (values: CreateReviewPayload, { resetForm }: Form) => {
+    const handleSubmit = async (values: CreateReviewPayload, { resetForm }) => {
         try {
             await fetch('/api/reviews', {
                 method: 'POST',
@@ -59,9 +64,9 @@ export const ReviewForm = () => {
             initialValues={{ emailAddress: '', name: '', rating: 0, comment: '' }}
             validationSchema={createReviewPayloadSchema}
         >
-            {(props) => (
+            {(formProps) => (
                 <Form>
-                    <Stack spacing="4">
+                    <Stack spacing="4" {...props}>
                         <Grid gap="4" gridTemplateColumns={['1fr', null, null, '1fr 1fr']}>
                             {/* Name */}
                             <Field name="name">
@@ -100,7 +105,7 @@ export const ReviewForm = () => {
                                         <RatingInput
                                             id="rating"
                                             value={form.values.rating}
-                                            onRatingChanged={(rating) => form.setFieldValue('rating', rating)}
+                                            onChange={(rating) => form.setFieldValue('rating', rating)}
                                         />
                                         <FormHelperText>Please give your honest rating.</FormHelperText>
                                         <FormErrorMessage>{meta.error}</FormErrorMessage>
@@ -126,7 +131,7 @@ export const ReviewForm = () => {
                         </Field>
 
                         <Box>
-                            <Button colorScheme="green" type="submit" isDisabled={!props.isValid}>
+                            <Button colorScheme="green" type="submit" isDisabled={!formProps.isValid}>
                                 Submit
                             </Button>
                         </Box>

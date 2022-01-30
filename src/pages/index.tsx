@@ -1,15 +1,14 @@
-import { Box, Flex, Text, Stack, Divider, Grid, Heading, HStack } from '@chakra-ui/react';
+import { Box, Flex, Text, Stack, Divider, Grid, Heading, HStack, Button } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useMemo } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import dayjs from 'dayjs';
 import { createContext } from '@chakra-ui/react-utils';
 
-import { reviewsToStarRatings } from '../../utils';
 import { Comment, CommentAuthor, CommentDate, CommentRating, CommentText, Rating } from '../components';
 import { Review } from '../types';
 import { RatingChart, ReviewForm } from '../views';
+import { useBatchedArray, useRatingChartData } from '../hooks';
 
 type HomeProps = {
     reviews: Review[];
@@ -74,9 +73,13 @@ const Home: NextPage<HomeProps> = ({ reviews }) => {
 const Comments = () => {
     const { reviews } = useReviewContext();
 
+    //Batching data to improve UX. Realistically, an actual API would return paginated data and we could either
+    //do an infinite scroll or append pages of data as they are loaded.
+    const [visibleReviews, loadMoreReviews, hasMoreReviews] = useBatchedArray(reviews);
+
     return (
         <Stack spacing="8" divider={<Divider />}>
-            {reviews.map((review) => (
+            {visibleReviews.map((review) => (
                 <Comment key={review.createdAt + review.name}>
                     <Stack spacing="0">
                         <HStack spacing="4">
@@ -88,6 +91,11 @@ const Comments = () => {
                     <CommentText>{review.comment}</CommentText>
                 </Comment>
             ))}
+            {hasMoreReviews && (
+                <Button colorScheme="blue" onClick={loadMoreReviews}>
+                    Show More
+                </Button>
+            )}
         </Stack>
     );
 };
@@ -97,35 +105,14 @@ const Comments = () => {
  */
 const Breakdown = () => {
     const { reviews } = useReviewContext();
-
-    //Parses reviews into chart ratings.
-    const chartData = useMemo(() => reviewsToStarRatings(reviews), [reviews]);
-
-    //Calculates the average rating from all reviews.
-    const averageRating = useMemo(() => {
-        const ratingSum = reviews.reduce((acc, { rating }) => acc + rating, 0);
-        return ratingSum / reviews.length;
-    }, [reviews]);
-
-    //Builds a chart ARIA label from all ratings.
-    const chartLabel = useMemo(() => {
-        const ratingSum = chartData.reduce((acc, { ratings }) => acc + ratings, 0);
-        let label = 'Overview Chart: ';
-
-        chartData.forEach((rating) => {
-            const ratingPercentage = (rating.ratings / ratingSum) * 100;
-            label = `${label}${rating.star} stars: ${ratingPercentage.toFixed(0)} percent of votes, `;
-        });
-
-        return label;
-    }, [chartData]);
+    const { ratings, label, averageRating } = useRatingChartData(reviews);
 
     return (
         <Stack>
             {/* Graph */}
-            <Box minHeight={64} maxHeight="8rem" mx={[4, null, 0]} h="full" tabIndex={0} aria-label={chartLabel}>
+            <Box role="img" minHeight={64} maxHeight="8rem" mx={[4, null, 0]} h="full" tabIndex={0} aria-label={label}>
                 <AutoSizer>
-                    {({ height, width }) => <RatingChart width={width} height={height} ratings={chartData} />}
+                    {({ height, width }) => <RatingChart width={width} height={height} ratings={ratings} />}
                 </AutoSizer>
             </Box>
 

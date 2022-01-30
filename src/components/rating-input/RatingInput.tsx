@@ -1,40 +1,23 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { Flex, FlexProps, IconButton, IconButtonProps } from '@chakra-ui/react';
+import { Box, Flex, FlexProps, RadioGroupProps, RadioProps, useRadio, useRadioGroup } from '@chakra-ui/react';
 import { createContext } from '@chakra-ui/react-utils';
-import { FC, useState, VFC } from 'react';
+import { FC } from 'react';
 
-export type RatingInputProps = FlexProps & {
-    /**
-     * Optional child render function, used to replace the default star icon button.
-     */
-    children?: (rating: number) => React.ReactNode;
+export type RatingInputProps = FlexProps &
+    RadioGroupProps & {
+        /**
+         * Optional child render function, used to replace the default star icon button.
+         */
+        children?: (rating: number) => React.ReactNode;
 
-    /**
-     * Maximum rating value, defaults to 5.
-     */
-    max?: number;
+        /**
+         * Maximum rating value, defaults to 5.
+         */
+        max?: number;
+    };
 
-    /**
-     * The initial rating value to use, defaults to 0
-     */
-    initialValue?: number;
-
-    /**
-     * Controlled value to use, rather than the internal value.
-     */
-    value?: number;
-
-    /**
-     * Event fired when the rating is changed.
-     */
-    onRatingChanged?: (value: number) => void;
-};
-
-type RatingInputButtonProps = Omit<IconButtonProps, 'aria-label'> & {
-    /**
-     * The rating the button represents
-     */
-    rating: number;
+export type RatingInputButtonProps = RadioProps & {
+    highlighted?: boolean;
 };
 
 type RatingInputContextOptions = {
@@ -60,50 +43,60 @@ export const [RatingProvider, useRatingContext] = createContext<RatingInputConte
  * Interactive control for setting ratings. By default, the element used is a `RatingControlButton`, but this can be overridden
  * by providing a child render function.
  */
-export const RatingInput: FC<RatingInputProps> = (props) => {
-    const { max = 5, initialValue = 0, value, onRatingChanged, children, ...rest } = props;
-    const [rating, setRating] = useState(initialValue);
+export const RatingInput = (props: RatingInputProps) => {
+    const { name, defaultValue, value, onChange, max = 5, children, ...rest } = props;
 
-    const handleRatingChanged = (newRating: number) => {
-        setRating(newRating);
-        onRatingChanged?.(newRating);
-    };
+    const {
+        value: currentValue,
+        getRootProps,
+        getRadioProps,
+    } = useRadioGroup({
+        name,
+        defaultValue,
+        value,
+        onChange,
+    });
+
+    const parsedCurrentValue = typeof currentValue === 'string' ? parseInt(currentValue) : currentValue;
 
     return (
-        <RatingProvider value={{ rating: value ?? rating, max, setRating: handleRatingChanged }}>
-            <Flex gap="1" {...rest}>
-                {Array.from({ length: max }, (_, index) =>
-                    children ? children(index + 1) : <RatingInputButton key={index} rating={index + 1} />
-                )}
-            </Flex>
-        </RatingProvider>
+        <Flex gap="1" {...getRootProps()} {...rest}>
+            {Array.from({ length: max }, (_, index) => {
+                const star = index + 1;
+
+                if (children) {
+                    return children(star);
+                }
+
+                return (
+                    <RatingInputButton
+                        key={index}
+                        highlighted={star < parsedCurrentValue}
+                        {...getRadioProps({ value: `${star}` })}
+                    />
+                );
+            })}
+        </Flex>
     );
 };
 
 /**
  * Default rating control for the RatingInput component. Must be a child of RatingInput.
  */
-export const RatingInputButton: VFC<RatingInputButtonProps> = ({ rating, onClick, ...rest }) => {
-    const { max, rating: currentRating, setRating } = useRatingContext();
-
-    const isActive = currentRating >= rating;
-    const isSelected = currentRating === rating;
-
-    const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-        setRating(rating);
-        onClick?.(e);
-    };
+export const RatingInputButton: FC<RatingInputButtonProps> = ({ highlighted, ...rest }) => {
+    const { getInputProps, getCheckboxProps } = useRadio(rest);
 
     return (
-        <IconButton
-            icon={<StarIcon boxSize="6" />}
-            aria-label={`${rating} out of ${max} stars ${isSelected && '(Selected)'}`}
-            color={isActive ? 'yellow.400' : 'gray.400'}
-            _hover={{ color: 'yellow.400' }}
-            variant="ghost"
-            onClick={handleClick}
-            minW="0"
-            {...rest}
-        />
+        <Box as="label">
+            <input aria-label={`${rest.value} star`} {...getInputProps()} />
+            <StarIcon
+                {...getCheckboxProps()}
+                boxSize={6}
+                cursor="pointer"
+                color={highlighted ? 'yellow.400' : 'gray.400'}
+                _hover={{ color: 'yellow.400' }}
+                _checked={{ color: 'yellow.400' }}
+            ></StarIcon>
+        </Box>
     );
 };
