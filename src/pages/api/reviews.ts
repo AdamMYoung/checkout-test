@@ -32,6 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         case 'POST':
             await runMiddleware(req, res, reviewMiddleware);
 
+            //We cast the returned body to ensure all values are stored in the correct types.
             const parsedBody = createReviewPayloadSchema.cast(JSON.parse(body)) as CreateReviewPayload;
             const payload = { ...parsedBody, createdAt: new Date().toISOString() };
 
