@@ -4,7 +4,7 @@ import { createContext } from '@chakra-ui/react-utils';
 import { FC } from 'react';
 
 export type RatingInputProps = FlexProps &
-    RadioGroupProps & {
+    Omit<RadioGroupProps, 'children'> & {
         /**
          * Optional child render function, used to replace the default star icon button.
          */
@@ -17,6 +17,9 @@ export type RatingInputProps = FlexProps &
     };
 
 export type RatingInputButtonProps = RadioProps & {
+    /**
+     * Indicates if the star should be highlighted, without being selected.
+     */
     highlighted?: boolean;
 };
 

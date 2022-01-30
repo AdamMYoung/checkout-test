@@ -37,7 +37,7 @@ export type Review = {
     /**
      * Rating of the review. Only accepts whole numbers between 1 and 5.
      */
-    rating: 1 | 2 | 3 | 4 | 5;
+    rating: number;
 
     /**
      * Comment on the review.

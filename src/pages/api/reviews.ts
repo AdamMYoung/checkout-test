@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { runMiddleware, validationMiddleware } from '../../../utils/api/api';
-import { createReviewPayloadSchema, Review } from '../../types';
+import { CreateReviewPayload, createReviewPayloadSchema, Review } from '../../types';
 import { faker } from '@faker-js/faker';
 
 /**
@@ -32,7 +32,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         case 'POST':
             await runMiddleware(req, res, reviewMiddleware);
 
-            const payload = { ...JSON.parse(body), createAt: new Date().toISOString() };
+            const parsedBody = createReviewPayloadSchema.cast(JSON.parse(body)) as CreateReviewPayload;
+            const payload = { ...parsedBody, createdAt: new Date().toISOString() };
 
             reviews.splice(0, 0, payload);
             res.status(201).send();
