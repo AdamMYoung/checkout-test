@@ -1,7 +1,20 @@
 import { render, screen } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import { Rating } from '.';
 
 describe('Rating', () => {
+    it('passes aXe validation', async () => {
+        const { container } = render(<Rating value={4} />);
+
+        expect(await axe(container)).toHaveNoViolations();
+    });
+
+    it('matches snapshot', () => {
+        const { container } = render(<Rating value={4} />);
+
+        expect(container).toMatchSnapshot();
+    });
+
     it('renders the correct rating provided', () => {
         const rating = 4;
         render(<Rating value={rating} />);

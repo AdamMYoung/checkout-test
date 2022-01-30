@@ -35,12 +35,11 @@ export const useRatingChartData = (reviews: Review[]): RatingChartData => {
         //Calculates the average rating from all reviews.
         const averageRating = sumOfRatings / reviews.length;
 
-        console.log(sumOfRatings, ratings, averageRating);
-
         //Builds an a11y label from all ratings.
         const label = ratings.reduce((prev, current) => {
             const percentage = (current.ratings / sumOfRatings) * 100;
-            return (prev = `${current.star} stars: ${percentage.toFixed(0)} percent of votes, `);
+
+            return prev + `${current.star} star: ${percentage.toFixed(0)} percent of votes, `;
         }, 'Overview Chart: ');
 
         return { ratings, averageRating, label };

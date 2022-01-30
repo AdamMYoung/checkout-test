@@ -1,34 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Comment matches snapshot 1`] = `
-<div>
-  <article
-    class="chakra-stack css-n21gh5"
-  />
-</div>
-`;
-
-exports[`CommentAuthor matches snapshot 1`] = `
-<div>
-  <h2
-    class="chakra-heading css-1tapsqs"
-  >
-    Test
-  </h2>
-</div>
-`;
-
-exports[`CommentDate matches snapshot 1`] = `
-<div>
-  <p
-    class="chakra-text css-5ft5pb"
-  >
-    Test
-  </p>
-</div>
-`;
-
-exports[`CommentRating matches snapshot 1`] = `
+exports[`Rating matches snapshot 1`] = `
 <div>
   <span
     aria-label="4 out of 5 stars"
@@ -86,15 +58,5 @@ exports[`CommentRating matches snapshot 1`] = `
       />
     </svg>
   </span>
-</div>
-`;
-
-exports[`CommentText matches snapshot 1`] = `
-<div>
-  <p
-    class="chakra-text css-0"
-  >
-    Test
-  </p>
 </div>
 `;

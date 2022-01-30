@@ -17,6 +17,8 @@
         "@faker-js/faker": "^6.0.0-alpha.5",
         "@testing-library/jest-dom": "^5.16.1",
         "@testing-library/react": "^12.1.2",
+        "@testing-library/react-hooks": "^7.0.2",
+        "@testing-library/user-event": "^13.5.0",
         "@types/jest-axe": "^3.5.3",
         "@types/react-virtualized-auto-sizer": "^1.0.1",
         "add": "^2.0.6",
