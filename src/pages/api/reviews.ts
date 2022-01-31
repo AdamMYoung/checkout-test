@@ -1,9 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { withSentry } from '@sentry/nextjs';
+import { faker } from '@faker-js/faker';
+import pino from 'pino';
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { runMiddleware, validationMiddleware } from '../../../utils/api/api';
 import { CreateReviewPayload, createReviewPayloadSchema, Review } from '../../types';
-import { faker } from '@faker-js/faker';
-import pino from 'pino';
 
 const logger = pino();
 
@@ -25,7 +27,7 @@ const reviews: Review[] = getFakeReviews(30);
 
 const reviewMiddleware = validationMiddleware(createReviewPayloadSchema);
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Review[] | string | void>) {
+async function handler(req: NextApiRequest, res: NextApiResponse<Review[] | string | void>) {
     const { method, body } = req;
 
     logger.info('Request received', { method });
@@ -52,3 +54,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             res.status(405).send('Method not allowed.');
     }
 }
+
+export default withSentry(handler);
