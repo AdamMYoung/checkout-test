@@ -43,7 +43,6 @@ jobs:
         run: |
           npm install -g yarn
           yarn install --frozen-lockfile
-          yarn build
 
       # Run all tests
       - name: Run Tests
@@ -75,7 +74,6 @@ jobs:
         run: |
           npm install -g yarn
           yarn install --frozen-lockfile
-          yarn build
 
       - name: Build
         run: yarn build
