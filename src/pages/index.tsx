@@ -1,5 +1,5 @@
 import { Box, Flex, Text, Stack, Divider, Grid, Heading, HStack, Button } from '@chakra-ui/react';
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import dayjs from 'dayjs';
@@ -130,12 +130,12 @@ const Breakdown = () => {
     );
 };
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetStaticProps = async (context) => {
     //Ideally, we'd do the data fetching here rather than in the API route since we'd have fewer hops,
     //however due to persistance of review data, I'm needing to do it there.
     const data = await fetch(`${process.env.APPLICATION_URL}/api/reviews`);
 
     return { props: { reviews: await data.json() } };
-}
+};
 
 export default Home;
