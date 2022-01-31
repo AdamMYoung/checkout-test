@@ -38,8 +38,6 @@ yarn-error.log*
 
 .dccache
 
-# Sentry
-.sentryclirc
 
 .env.development
 
