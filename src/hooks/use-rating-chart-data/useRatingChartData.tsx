@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { reviewsToStarRatings } from '../../../utils';
+import { reviewsToStarRatings } from '../../utils';
 import { Review } from '../../types';
 import { StarRatings } from '../../views';
 

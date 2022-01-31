@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 import pino from 'pino';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { runMiddleware, validationMiddleware } from '../../../utils/api/api';
+import { runMiddleware, validationMiddleware } from '../../utils/api/api';
 import { CreateReviewPayload, createReviewPayloadSchema, Review } from '../../types';
 
 const logger = pino();

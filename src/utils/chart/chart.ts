@@ -1,5 +1,5 @@
-import { Review } from '../../src/types';
-import { StarRatings } from '../../src/views';
+import { Review } from '../../types';
+import { StarRatings } from '../../views';
 
 /**
  * Parses a set of reviews into a totalled set of star ratings.

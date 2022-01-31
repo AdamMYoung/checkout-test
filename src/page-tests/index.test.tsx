@@ -43,26 +43,6 @@ describe('Home page', () => {
         });
     });
 
-    it('renders the comment section', async () => {
-        render(<Home reviews={reviews} />);
-
-        const title = screen.getByRole('heading', { name: /Comments/i });
-        const comment1 = screen.getByText(/John/i);
-        const comment2 = screen.getByText(/Joe/i);
-        const comment3 = screen.getByText(/Jane/i);
-        const comment4 = screen.getByText(/Bill/i);
-        const comment5 = screen.getByText(/Bob/i);
-
-        await waitFor(() => {
-            expect(title).toBeInTheDocument();
-            expect(comment1).toBeInTheDocument();
-            expect(comment2).toBeInTheDocument();
-            expect(comment3).toBeInTheDocument();
-            expect(comment4).toBeInTheDocument();
-            expect(comment5).toBeInTheDocument();
-        });
-    });
-
     it('displays more comments when the button is selected', async () => {
         render(<Home reviews={reviews} />);
 

@@ -1,5 +1,5 @@
 import { reviewsToStarRatings } from '..';
-import { Review } from '../../src/types';
+import { Review } from '../../types';
 
 const reviews: Review[] = [
     { name: 'John', rating: 5, comment: 'Great!', createdAt: new Date().toISOString() },

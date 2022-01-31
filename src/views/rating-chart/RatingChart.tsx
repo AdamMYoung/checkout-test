@@ -2,7 +2,7 @@ import { Box, BoxProps } from '@chakra-ui/react';
 import { useMemo, VFC } from 'react';
 import { HorizontalBarSeries, XAxis, XYPlot, XYPlotProps, YAxis } from 'react-vis';
 
-import { tickIntegerFormat } from '../../../utils';
+import { tickIntegerFormat } from '../../utils';
 
 export type StarRating<T extends number> = {
     star: T;
