@@ -4,6 +4,11 @@ This application is a demonstration of the requirements provided in the checkout
 
 For production applications, implementing Sentry on the back-end would provide much better tracing of issues across FE and BE.
 
+Two additional pipeline action have been added to align with best practices.
+
+-   Dependabot: Raises PRs for updated packages.
+-   Static Code Analysis: Highlights code security issues on every branch and commit.
+
 ## Structure
 
 The project is broken into distinct folders, as defined below:
