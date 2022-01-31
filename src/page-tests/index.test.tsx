@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import { Review } from '../types';
 
-import Home from './index';
+import Home from '../pages';
 
 const reviews: Review[] = [
     { name: 'John', rating: 5, comment: 'Great!', createdAt: new Date().toISOString() },
