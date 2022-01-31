@@ -18,17 +18,18 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
+  test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        with:
-          node-version: 12
       
       - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          
       - name: Install Dependencies
         run: |
           npm install -g yarn
@@ -38,6 +39,24 @@ jobs:
       # Run all tests
       - name: Run Tests
         run: yarn test:ci
+        
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          
+      - name: Install Dependencies
+        run: |
+          npm install -g yarn
+          yarn install --frozen-lockfile
+          yarn build
 
       - name: Build
         run: yarn build
