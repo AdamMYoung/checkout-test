@@ -1,6 +1,8 @@
 # Checkout Test
 
-This application is a demonstration of the requirements provided in the checkout.com front-end developer interview. The application is built using Chakra-UI due to the strong accessibility it provides, Formik and Yup for form creation and validation, and react-vis for data visualization. For error tracking and logging, Sentry has been included as a dependency. Breadcrumbs will be automatically logged prior to an error via the Next.JS integration provided by sentry.
+This application is a demonstration of the requirements provided in the checkout.com front-end developer interview. The application is built using Chakra-UI due to the strong accessibility it provides, Formik and Yup for form creation and validation, and react-vis for data visualization. For error tracking and logging, Sentry has been included as a dependency. Breadcrumbs will be automatically logged prior to an error via the Next.JS integration provided by Sentry.
+
+For production applications, implementing Sentry on the back-end would provide much better tracing of issues across FE and BE.
 
 ## Structure
 
