@@ -21,6 +21,10 @@ The project is broken into distinct areas, as defined below:
 You will need the following environment variables declared:
 
 -   `APPLICATION_URL`: URL of the application, used for the SSR query on `index.tsx`. For development, it will be `localhost:3000`.
+-   `SENTRY_DSN`: DSN to use for pushing events to Sentry.
+-   `SENTRY_AUTH_TOKEN`: Authentication token provided by Sentry.
+-   `SENTRY_ORG`: Organisation the Sentry project belongs to.
+-   `SENTRY_PROJECT`: Name of the project in Sentry.
 
 The available commands are available:
 
