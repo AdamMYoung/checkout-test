@@ -101,7 +101,7 @@ const Comments = () => {
 };
 
 /**
- * Displays a breakdown of the reviews by rating via a bar chart, and an average rating.
+ * Displays a breakdown of the reviews by rating via a bar chart, and an average rating. Reviews are provided by a parent ReviewContext.
  */
 const Breakdown = () => {
     const { reviews } = useReviewContext();

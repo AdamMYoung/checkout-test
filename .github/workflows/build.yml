@@ -76,7 +76,11 @@ jobs:
                   yarn install --frozen-lockfile
 
             - name: Build
-              run: yarn build
+              run: |
+                  export SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
+                  export SENTRY_ORG=${{ secrets.SENTRY_ORG }}
+                  export SENTRY_PROJECT=${{ secrets.SENTRY_PROJECT }}
+                  yarn build
 
             - name: Upload a Build Artifact
               uses: actions/upload-artifact@v2.3.1
