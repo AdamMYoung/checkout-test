@@ -860,17 +860,13 @@ exports[`Home page matches snapshot 1`] = `
               Good!
             </p>
           </article>
-          <hr
-            aria-orientation="horizontal"
-            class="chakra-divider css-1y67kn3"
-          />
-          <button
-            class="chakra-button css-5c2176"
-            type="button"
-          >
-            Show More
-          </button>
         </div>
+        <button
+          class="chakra-button css-5c2176"
+          type="button"
+        >
+          Show More
+        </button>
       </div>
     </div>
   </div>

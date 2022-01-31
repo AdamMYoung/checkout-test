@@ -1,9 +1,26 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
+import { axe } from 'jest-axe';
 import { ReviewForm } from '.';
 
 describe('ReviewForm', () => {
+    it('passes aXe validation', async () => {
+        const { container } = render(<ReviewForm />);
+
+        //Formik requires us to wrap expects in a waitFor(), since the validateOnMount prop causes re-renders which
+        //jest isn't expecting.
+        await waitFor(async () => {
+            expect(await axe(container)).toHaveNoViolations();
+        });
+    });
+
+    it('matches snapshot', async () => {
+        const { container } = render(<ReviewForm />);
+
+        await waitFor(() => {
+            expect(container).toMatchSnapshot();
+        });
+    });
+
     it('has all required fields', async () => {
         render(<ReviewForm />);
 
@@ -12,8 +29,6 @@ describe('ReviewForm', () => {
         const starRatingField = screen.getByLabelText(/Rating/i);
         const commentField = screen.getByLabelText(/Comment/i);
 
-        //Formik requires us to wrap expects in a waitFor(), since the validateOnMount prop causes re-renders which
-        //jest isn't expecting.
         await waitFor(() => {
             expect(nameField).toBeInTheDocument();
             expect(emailField).toBeInTheDocument();

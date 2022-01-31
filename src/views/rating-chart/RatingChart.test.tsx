@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import { RatingChart, StarRatings } from '.';
 
 const ratings: StarRatings = [
@@ -15,8 +16,24 @@ beforeEach(() => {
 });
 
 describe('RatingChart', () => {
+    it('passes aXe validation', async () => {
+        const { container } = render(
+            <RatingChart height={200} width={200} ratings={ratings} aria-label="Ratings Chart" />
+        );
+
+        expect(await axe(container)).toHaveNoViolations();
+    });
+
+    it('matches snapshot', async () => {
+        const { container } = render(
+            <RatingChart height={200} width={200} ratings={ratings} aria-label="Ratings Chart" />
+        );
+
+        expect(container).toMatchSnapshot();
+    });
+
     it('has the img role', () => {
-        render(<RatingChart height={200} width={200} ratings={ratings} />);
+        render(<RatingChart height={200} width={200} ratings={ratings} aria-label="Ratings Chart" />);
 
         const chart = screen.getByRole('img');
 

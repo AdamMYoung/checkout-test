@@ -17,6 +17,7 @@ export type StarRatings = [StarRating<1>, StarRating<2>, StarRating<3>, StarRati
 
 type RatingChartProps = XYPlotProps &
     BoxProps & {
+        'aria-label': string;
         ratings: StarRatings;
     };
 

@@ -1,0 +1,283 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewForm matches snapshot 1`] = `
+<div>
+  <form
+    action="#"
+  >
+    <div
+      class="chakra-stack css-17kdbol"
+    >
+      <div
+        class="css-11g0tpd"
+      >
+        <div
+          class="chakra-form-control css-0"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="name"
+            id="field-11-label"
+          >
+            Name
+            <span
+              aria-hidden="true"
+              class="chakra-form__required-indicator css-0"
+              role="presentation"
+            >
+              *
+            </span>
+          </label>
+          <input
+            aria-describedby="field-11-helptext"
+            aria-required="true"
+            class="chakra-input css-0"
+            id="name"
+            name="name"
+            placeholder="Jane Doe"
+            required=""
+            value=""
+          />
+          <div
+            class="chakra-form__helper-text css-0"
+            id="field-11-helptext"
+          >
+            This will be visible on your comment.
+          </div>
+        </div>
+        <div
+          class="chakra-form-control css-0"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="emailAddress"
+            id="field-12-label"
+          >
+            Email
+            <span
+              aria-hidden="true"
+              class="chakra-form__required-indicator css-0"
+              role="presentation"
+            >
+              *
+            </span>
+          </label>
+          <input
+            aria-describedby="field-12-helptext"
+            aria-required="true"
+            class="chakra-input css-0"
+            id="emailAddress"
+            name="emailAddress"
+            placeholder="jane.doe@example.com"
+            required=""
+            type="email"
+            value=""
+          />
+          <div
+            class="chakra-form__helper-text css-0"
+            id="field-12-helptext"
+          >
+            We'll never share your email.
+          </div>
+        </div>
+        <div
+          class="chakra-form-control css-0"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="rating"
+            id="rating-label"
+          >
+            Rating
+            <span
+              aria-hidden="true"
+              class="chakra-form__required-indicator css-0"
+              role="presentation"
+            >
+              *
+            </span>
+          </label>
+          <div
+            aria-label="Rating"
+            class="css-nn803e"
+            role="radiogroup"
+          >
+            <label
+              class="css-0"
+            >
+              <input
+                aria-label="1 star"
+                aria-required="true"
+                id="radio-13"
+                name="radio-18"
+                required=""
+                style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                type="radio"
+                value="1"
+              />
+              <svg
+                aria-hidden="true"
+                class="chakra-icon css-16r67my"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M23.555,8.729a1.505,1.505,0,0,0-1.406-.98H16.062a.5.5,0,0,1-.472-.334L13.405,1.222a1.5,1.5,0,0,0-2.81,0l-.005.016L8.41,7.415a.5.5,0,0,1-.471.334H1.85A1.5,1.5,0,0,0,.887,10.4l5.184,4.3a.5.5,0,0,1,.155.543L4.048,21.774a1.5,1.5,0,0,0,2.31,1.684l5.346-3.92a.5.5,0,0,1,.591,0l5.344,3.919a1.5,1.5,0,0,0,2.312-1.683l-2.178-6.535a.5.5,0,0,1,.155-.543l5.194-4.306A1.5,1.5,0,0,0,23.555,8.729Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </label>
+            <label
+              class="css-0"
+            >
+              <input
+                aria-label="2 star"
+                aria-required="true"
+                id="radio-14"
+                name="radio-18"
+                required=""
+                style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                type="radio"
+                value="2"
+              />
+              <svg
+                aria-hidden="true"
+                class="chakra-icon css-16r67my"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M23.555,8.729a1.505,1.505,0,0,0-1.406-.98H16.062a.5.5,0,0,1-.472-.334L13.405,1.222a1.5,1.5,0,0,0-2.81,0l-.005.016L8.41,7.415a.5.5,0,0,1-.471.334H1.85A1.5,1.5,0,0,0,.887,10.4l5.184,4.3a.5.5,0,0,1,.155.543L4.048,21.774a1.5,1.5,0,0,0,2.31,1.684l5.346-3.92a.5.5,0,0,1,.591,0l5.344,3.919a1.5,1.5,0,0,0,2.312-1.683l-2.178-6.535a.5.5,0,0,1,.155-.543l5.194-4.306A1.5,1.5,0,0,0,23.555,8.729Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </label>
+            <label
+              class="css-0"
+            >
+              <input
+                aria-label="3 star"
+                aria-required="true"
+                id="radio-15"
+                name="radio-18"
+                required=""
+                style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                type="radio"
+                value="3"
+              />
+              <svg
+                aria-hidden="true"
+                class="chakra-icon css-16r67my"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M23.555,8.729a1.505,1.505,0,0,0-1.406-.98H16.062a.5.5,0,0,1-.472-.334L13.405,1.222a1.5,1.5,0,0,0-2.81,0l-.005.016L8.41,7.415a.5.5,0,0,1-.471.334H1.85A1.5,1.5,0,0,0,.887,10.4l5.184,4.3a.5.5,0,0,1,.155.543L4.048,21.774a1.5,1.5,0,0,0,2.31,1.684l5.346-3.92a.5.5,0,0,1,.591,0l5.344,3.919a1.5,1.5,0,0,0,2.312-1.683l-2.178-6.535a.5.5,0,0,1,.155-.543l5.194-4.306A1.5,1.5,0,0,0,23.555,8.729Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </label>
+            <label
+              class="css-0"
+            >
+              <input
+                aria-label="4 star"
+                aria-required="true"
+                id="radio-16"
+                name="radio-18"
+                required=""
+                style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                type="radio"
+                value="4"
+              />
+              <svg
+                aria-hidden="true"
+                class="chakra-icon css-16r67my"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M23.555,8.729a1.505,1.505,0,0,0-1.406-.98H16.062a.5.5,0,0,1-.472-.334L13.405,1.222a1.5,1.5,0,0,0-2.81,0l-.005.016L8.41,7.415a.5.5,0,0,1-.471.334H1.85A1.5,1.5,0,0,0,.887,10.4l5.184,4.3a.5.5,0,0,1,.155.543L4.048,21.774a1.5,1.5,0,0,0,2.31,1.684l5.346-3.92a.5.5,0,0,1,.591,0l5.344,3.919a1.5,1.5,0,0,0,2.312-1.683l-2.178-6.535a.5.5,0,0,1,.155-.543l5.194-4.306A1.5,1.5,0,0,0,23.555,8.729Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </label>
+            <label
+              class="css-0"
+            >
+              <input
+                aria-label="5 star"
+                aria-required="true"
+                id="radio-17"
+                name="radio-18"
+                required=""
+                style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                type="radio"
+                value="5"
+              />
+              <svg
+                aria-hidden="true"
+                class="chakra-icon css-16r67my"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M23.555,8.729a1.505,1.505,0,0,0-1.406-.98H16.062a.5.5,0,0,1-.472-.334L13.405,1.222a1.5,1.5,0,0,0-2.81,0l-.005.016L8.41,7.415a.5.5,0,0,1-.471.334H1.85A1.5,1.5,0,0,0,.887,10.4l5.184,4.3a.5.5,0,0,1,.155.543L4.048,21.774a1.5,1.5,0,0,0,2.31,1.684l5.346-3.92a.5.5,0,0,1,.591,0l5.344,3.919a1.5,1.5,0,0,0,2.312-1.683l-2.178-6.535a.5.5,0,0,1,.155-.543l5.194-4.306A1.5,1.5,0,0,0,23.555,8.729Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </label>
+          </div>
+          <div
+            class="chakra-form__helper-text css-0"
+            id="rating-helptext"
+          >
+            Please give your honest rating.
+          </div>
+        </div>
+      </div>
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <label
+          class="chakra-form__label css-uvho5g"
+          for="comment"
+          id="field-20-label"
+        >
+          Comment
+          <span
+            aria-hidden="true"
+            class="chakra-form__required-indicator css-0"
+            role="presentation"
+          >
+            *
+          </span>
+        </label>
+        <textarea
+          aria-required="true"
+          class="chakra-textarea css-0"
+          id="comment"
+          name="comment"
+          placeholder="The product was fantastic! It really..."
+          required=""
+          type="textarea"
+        />
+      </div>
+      <div
+        class="css-0"
+      >
+        <button
+          class="chakra-button css-5c2176"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+`;
