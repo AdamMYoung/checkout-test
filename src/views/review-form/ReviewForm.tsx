@@ -60,7 +60,7 @@ export const ReviewForm: VFC<StackProps> = (props) => {
     return (
         <Formik
             onSubmit={handleSubmit}
-            isInitialValid={false}
+            validateOnMount
             initialValues={{ emailAddress: '', name: '', rating: 0, comment: '' }}
             validationSchema={createReviewPayloadSchema}
         >
@@ -101,9 +101,9 @@ export const ReviewForm: VFC<StackProps> = (props) => {
                             <Field name="rating">
                                 {({ form, meta }) => (
                                     <FormControl id="rating" isRequired isInvalid={meta.touched && meta.error}>
-                                        <FormLabel htmlFor="rating">Rating</FormLabel>
+                                        <FormLabel>Rating</FormLabel>
                                         <RatingInput
-                                            id="rating"
+                                            aria-label="Rating"
                                             value={form.values.rating}
                                             onChange={(rating) => form.setFieldValue('rating', rating)}
                                         />

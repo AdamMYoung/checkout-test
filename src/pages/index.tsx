@@ -110,9 +110,11 @@ const Breakdown = () => {
     return (
         <Stack>
             {/* Graph */}
-            <Box role="img" minHeight={64} maxHeight="8rem" mx={[4, null, 0]} h="full" tabIndex={0} aria-label={label}>
+            <Box minHeight={64} maxHeight="8rem" mx={[4, null, 0]} h="full" tabIndex={0}>
                 <AutoSizer>
-                    {({ height, width }) => <RatingChart width={width} height={height} ratings={ratings} />}
+                    {({ height, width }) => (
+                        <RatingChart width={width} height={height} ratings={ratings} aria-label={label} />
+                    )}
                 </AutoSizer>
             </Box>
 

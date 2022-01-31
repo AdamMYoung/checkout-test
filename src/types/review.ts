@@ -54,8 +54,12 @@ export type Review = {
  * Schema to validate the payload of the `reviews` POST API endpoint.
  */
 export const createReviewPayloadSchema: SchemaOf<CreateReviewPayload> = object({
-    emailAddress: string().required('Please enter a valid email address'),
+    emailAddress: string().email('Please enter a valid email address').required('Please enter an email address'),
     name: string().required('Please enter your name'),
-    rating: number().min(1).max(5).integer().required('Please select a rating'),
+    rating: number()
+        .min(1, 'Rating must be between 1 and 5')
+        .max(5, 'Rating must be between 1 and 5')
+        .integer()
+        .required('Please select a rating'),
     comment: string().required('Please enter a comment'),
 });
