@@ -1,6 +1,5 @@
 import { StarIcon } from '@chakra-ui/icons';
 import { Box, Flex, FlexProps, RadioGroupProps, RadioProps, useRadio, useRadioGroup } from '@chakra-ui/react';
-import { createContext } from '@chakra-ui/react-utils';
 import { FC } from 'react';
 
 export type RatingInputProps = FlexProps &
@@ -22,25 +21,6 @@ export type RatingInputButtonProps = RadioProps & {
      */
     highlighted?: boolean;
 };
-
-type RatingInputContextOptions = {
-    /**
-     * Maximum rating value, defaults to 5.
-     */
-    max: number;
-
-    /**
-     * Current rating value selected.
-     */
-    rating: number;
-
-    /**
-     * Value to set the current rating to.
-     */
-    setRating: (value: number) => void;
-};
-
-export const [RatingProvider, useRatingContext] = createContext<RatingInputContextOptions>();
 
 /**
  * Interactive control for setting ratings. By default, the element used is a `RatingControlButton`, but this can be overridden
@@ -99,7 +79,7 @@ export const RatingInputButton: FC<RatingInputButtonProps> = ({ highlighted, ...
                 color={highlighted ? 'yellow.400' : 'gray.400'}
                 _hover={{ color: 'yellow.400' }}
                 _checked={{ color: 'yellow.400' }}
-            ></StarIcon>
+            />
         </Box>
     );
 };

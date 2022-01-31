@@ -7,6 +7,12 @@ export type RatingProps = BoxProps & {
     max?: number;
 };
 
+/**
+ * Represents a Rating element, which is a horizontal stack of `StarIcon` elements.
+ *
+ * The `value` prop determines the number of filled stars.
+ * The `max` prop determines the maximum number of stars.
+ */
 export const Rating: VFC<RatingProps> = ({ value, max = 5, ...rest }) => {
     const rating = value > max ? max : value;
 

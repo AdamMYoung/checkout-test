@@ -1,6 +1,11 @@
 import { Review } from '../../src/types';
 import { StarRatings } from '../../src/views';
 
+/**
+ * Parses a set of reviews into a totalled set of star ratings.
+ * @param reviews Reviews to parse.
+ * @returns A complete set of `StarRating` objects.
+ */
 export const reviewsToStarRatings = (reviews: Review[]): StarRatings => {
     const ratings: StarRatings = [
         { star: 1, ratings: 0 },
@@ -21,6 +26,11 @@ export const reviewsToStarRatings = (reviews: Review[]): StarRatings => {
     return ratings;
 };
 
+/**
+ * Formatter used by react-vis to format the tick labels on a chart. Rounds the provided value to the nearest whole number.
+ * @param val Number to parse.
+ * @returns A rounded string variant of the value provided.
+ */
 export const tickIntegerFormat = (val: number): string => {
     return Math.round(val) === val ? val.toString() : '';
 };

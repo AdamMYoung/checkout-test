@@ -24,7 +24,6 @@ type RatingChartData = {
 /**
  * Hook to parse review data into chart-specific data.
  * @param reviews Reviews to build chart data with.
-
  */
 export const useRatingChartData = (reviews: Review[]): RatingChartData => {
     return useMemo(() => {

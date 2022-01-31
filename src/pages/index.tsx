@@ -68,7 +68,7 @@ const Home: NextPage<HomeProps> = ({ reviews }) => {
 };
 
 /**
- * Displays a list of comments, separated by a divider.
+ * Displays a list of reviews, separated by a divider. Reviews are provided by a parent ReviewContext.
  */
 const Comments = () => {
     const { reviews } = useReviewContext();
