@@ -39,7 +39,7 @@ export function validationMiddleware<TSchema extends ObjectShape>(validator: Obj
             logger.info('Validation successful');
             next(body);
         } catch (e) {
-            logger.warn('Validation error', { errors: e });
+            logger.warn('Validation error', e);
             res.status(422).json({ errors: e });
         }
     };
