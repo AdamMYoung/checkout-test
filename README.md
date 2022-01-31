@@ -2,9 +2,9 @@
 
 This application is a demonstration of the requirements provided in the checkout.com front-end developer interview. The application is built using Chakra-UI due to the strong accessibility it provides, Formik and Yup for form creation and validation, and react-vis for data visualization. For error tracking and logging, Sentry has been included as a dependency. Breadcrumbs will be automatically logged prior to an error via the Next.JS integration provided by Sentry.
 
-For production applications, implementing Sentry on the back-end would provide much better tracing of issues across FE and BE.
+For production applications, implementing Sentry on the back-end would provide much better tracing of issues across FE and BE. Static code analysis has also been added to align with best practices.
 
-Static code analysis has also been added to align with best practices.
+Additionally, it would have been nice to add i18n with [react-i18next](https://react.i18next.com/), as well as potentially move the custom star components into a chakra-ui theme definition, sadly I didn't have the time alongside my current timetable.
 
 ## Structure
 
