@@ -32,3 +32,7 @@ describe('reviewsToStarRatings', () => {
         ]);
     });
 });
+
+describe('tickToIntegerFormat', () => {
+    it('parses the provided value correctly', () => {});
+});
