@@ -66,12 +66,6 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-            - uses: DamianReeves/write-file-action@v1.0
-              with:
-                  path: ${{ env.home}}/sentry.properties
-                  contents: auth.token=${{ secrets.SENTRY_AUTH_TOKEN }}
-                  write-mode: append
-
             - uses: actions/setup-node@v1
               with:
                   node-version: 12
