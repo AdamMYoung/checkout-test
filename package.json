@@ -16,6 +16,7 @@
         "@emotion/react": "^11",
         "@emotion/styled": "^11",
         "@faker-js/faker": "^6.0.0-alpha.5",
+        "@sentry/nextjs": "^6.17.3",
         "@testing-library/jest-dom": "^5.16.1",
         "@testing-library/react": "^12.1.2",
         "@testing-library/react-hooks": "^7.0.2",
