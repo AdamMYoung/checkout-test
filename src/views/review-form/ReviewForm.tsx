@@ -12,7 +12,7 @@ import {
     Textarea,
     useToast,
 } from '@chakra-ui/react';
-import { Field, Form, Formik } from 'formik';
+import { Field, FieldProps, Form, Formik } from 'formik';
 import { useRouter } from 'next/router';
 import { VFC } from 'react';
 
@@ -26,7 +26,7 @@ export const ReviewForm: VFC<StackProps> = (props) => {
     const router = useRouter();
     const toast = useToast();
 
-    const handleSubmit = async (values: CreateReviewPayload, { resetForm }) => {
+    const handleSubmit = async (values: CreateReviewPayload, { resetForm }: { resetForm: () => void }) => {
         try {
             await fetch('/api/reviews', {
                 method: 'POST',
@@ -70,8 +70,8 @@ export const ReviewForm: VFC<StackProps> = (props) => {
                         <Grid gap="4" gridTemplateColumns={['1fr', null, null, '1fr 1fr']}>
                             {/* Name */}
                             <Field name="name">
-                                {({ field, meta }) => (
-                                    <FormControl isRequired isInvalid={meta.touched && meta.error}>
+                                {({ field, meta }: FieldProps) => (
+                                    <FormControl isRequired isInvalid={meta.touched && !!meta.error}>
                                         <FormLabel htmlFor="name">Name</FormLabel>
                                         <Input id="name" placeholder="Jane Doe" {...field} />
                                         <FormHelperText>This will be visible on your comment.</FormHelperText>
@@ -82,8 +82,8 @@ export const ReviewForm: VFC<StackProps> = (props) => {
 
                             {/* Email */}
                             <Field name="emailAddress">
-                                {({ field, meta }) => (
-                                    <FormControl isRequired isInvalid={meta.touched && meta.error}>
+                                {({ field, meta }: FieldProps) => (
+                                    <FormControl isRequired isInvalid={meta.touched && !!meta.error}>
                                         <FormLabel htmlFor="emailAddress">Email</FormLabel>
                                         <Input
                                             id="emailAddress"
@@ -91,7 +91,7 @@ export const ReviewForm: VFC<StackProps> = (props) => {
                                             placeholder="jane.doe@example.com"
                                             {...field}
                                         />
-                                        <FormHelperText>We'll never share your email.</FormHelperText>
+                                        <FormHelperText>{"We'll never share your email."}</FormHelperText>
                                         <FormErrorMessage>{meta.error}</FormErrorMessage>
                                     </FormControl>
                                 )}
@@ -99,8 +99,8 @@ export const ReviewForm: VFC<StackProps> = (props) => {
 
                             {/* Rating */}
                             <Field name="rating">
-                                {({ form, meta }) => (
-                                    <FormControl id="rating" isRequired isInvalid={meta.touched && meta.error}>
+                                {({ form, meta }: FieldProps) => (
+                                    <FormControl id="rating" isRequired isInvalid={meta.touched && !!meta.error}>
                                         <FormLabel>Rating</FormLabel>
                                         <RatingInput
                                             aria-label="Rating"
@@ -116,8 +116,8 @@ export const ReviewForm: VFC<StackProps> = (props) => {
 
                         {/* Comments */}
                         <Field name="comment">
-                            {({ field, meta }) => (
-                                <FormControl isRequired isInvalid={meta.touched && meta.error}>
+                            {({ field, meta }: FieldProps) => (
+                                <FormControl isRequired isInvalid={meta.touched && !!meta.error}>
                                     <FormLabel htmlFor="comment">Comment</FormLabel>
                                     <Textarea
                                         type="textarea"
