@@ -6,14 +6,14 @@ For production applications, implementing Sentry on the back-end would provide m
 
 ## Structure
 
-The project is broken into distinct areas, as defined below:
+The project is broken into distinct folders, as defined below:
 
 -   `components`: Re-usable, composable components. Elements here are expected to be low level and generic where possible.
 -   `hooks`: React hooks developed for the application. Generic where possible, and designed to be easily unit-tested.
 -   `page-tests`: Due to how Next.js handles the `pages` folder, all tests for static pages can be found here.
 -   `pages`: Next.js pages, as defined by the framework's structure.
 -   `types`: Type definitions grouped by domain, along with validation schemas for them.
--   `views`: Isolated components, designed with specific functions but not as re-usable or composable like components. These typically handle their own lifecycle, while providing a clear surface for testing.
+-   `views`: Isolated components, designed with specific functions but not as re-usable or composable like components. These typically handle their own lifecycle, while providing a clear area for testing.
 -   `utils`: Utility functions, grouped by domain.
 
 ## To Run
