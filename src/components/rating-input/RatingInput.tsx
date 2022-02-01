@@ -78,6 +78,7 @@ export const RatingInputButton: FC<RatingInputButtonProps> = ({ highlighted, ...
                 cursor="pointer"
                 color={highlighted ? 'yellow.400' : 'gray.400'}
                 _hover={{ color: 'yellow.400' }}
+                _focus={{ boxShadow: 'outline' }}
                 _checked={{ color: 'yellow.400' }}
             />
         </Box>
