@@ -24,7 +24,6 @@ import { RatingInput } from '../../components';
  * Form used to submit a new review. Encapsulates all logic around page-refresh and error handling.
  */
 export const ReviewForm: VFC<StackProps> = (props) => {
-    const isFullWidth = useBreakpointValue([true, null, false]);
     const router = useRouter();
     const toast = useToast();
 
@@ -133,12 +132,7 @@ export const ReviewForm: VFC<StackProps> = (props) => {
                         </Field>
 
                         <Box>
-                            <Button
-                                isFullWidth={isFullWidth}
-                                colorScheme="green"
-                                type="submit"
-                                isDisabled={!formProps.isValid}
-                            >
+                            <Button colorScheme="green" type="submit" isDisabled={!formProps.isValid}>
                                 Submit
                             </Button>
                         </Box>

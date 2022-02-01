@@ -433,14 +433,14 @@ exports[`Home page matches snapshot 1`] = `
             class="chakra-stack css-n21gh5"
           >
             <div
-              class="chakra-stack css-1h3nfwc"
+              class="chakra-stack css-171ux5b"
             >
               <div
-                class="chakra-stack css-1qwdsol"
+                class="css-1uhjxx2"
               >
                 <span
                   aria-label="5 out of 5 stars"
-                  class="chakra-stack css-193rmy8"
+                  class="chakra-stack css-yvctne"
                   role="img"
                 >
                   <svg
@@ -495,7 +495,7 @@ exports[`Home page matches snapshot 1`] = `
                   </svg>
                 </span>
                 <h3
-                  class="chakra-heading css-1tapsqs"
+                  class="chakra-heading css-1hqqclp"
                 >
                   John
                 </h3>
@@ -520,14 +520,14 @@ exports[`Home page matches snapshot 1`] = `
             class="chakra-stack css-n21gh5"
           >
             <div
-              class="chakra-stack css-1h3nfwc"
+              class="chakra-stack css-171ux5b"
             >
               <div
-                class="chakra-stack css-1qwdsol"
+                class="css-1uhjxx2"
               >
                 <span
                   aria-label="4 out of 5 stars"
-                  class="chakra-stack css-193rmy8"
+                  class="chakra-stack css-yvctne"
                   role="img"
                 >
                   <svg
@@ -582,7 +582,7 @@ exports[`Home page matches snapshot 1`] = `
                   </svg>
                 </span>
                 <h3
-                  class="chakra-heading css-1tapsqs"
+                  class="chakra-heading css-1hqqclp"
                 >
                   Joe
                 </h3>
@@ -607,14 +607,14 @@ exports[`Home page matches snapshot 1`] = `
             class="chakra-stack css-n21gh5"
           >
             <div
-              class="chakra-stack css-1h3nfwc"
+              class="chakra-stack css-171ux5b"
             >
               <div
-                class="chakra-stack css-1qwdsol"
+                class="css-1uhjxx2"
               >
                 <span
                   aria-label="3 out of 5 stars"
-                  class="chakra-stack css-193rmy8"
+                  class="chakra-stack css-yvctne"
                   role="img"
                 >
                   <svg
@@ -669,7 +669,7 @@ exports[`Home page matches snapshot 1`] = `
                   </svg>
                 </span>
                 <h3
-                  class="chakra-heading css-1tapsqs"
+                  class="chakra-heading css-1hqqclp"
                 >
                   Jane
                 </h3>
@@ -694,14 +694,14 @@ exports[`Home page matches snapshot 1`] = `
             class="chakra-stack css-n21gh5"
           >
             <div
-              class="chakra-stack css-1h3nfwc"
+              class="chakra-stack css-171ux5b"
             >
               <div
-                class="chakra-stack css-1qwdsol"
+                class="css-1uhjxx2"
               >
                 <span
                   aria-label="2 out of 5 stars"
-                  class="chakra-stack css-193rmy8"
+                  class="chakra-stack css-yvctne"
                   role="img"
                 >
                   <svg
@@ -756,7 +756,7 @@ exports[`Home page matches snapshot 1`] = `
                   </svg>
                 </span>
                 <h3
-                  class="chakra-heading css-1tapsqs"
+                  class="chakra-heading css-1hqqclp"
                 >
                   Bill
                 </h3>
@@ -781,14 +781,14 @@ exports[`Home page matches snapshot 1`] = `
             class="chakra-stack css-n21gh5"
           >
             <div
-              class="chakra-stack css-1h3nfwc"
+              class="chakra-stack css-171ux5b"
             >
               <div
-                class="chakra-stack css-1qwdsol"
+                class="css-1uhjxx2"
               >
                 <span
                   aria-label="4 out of 5 stars"
-                  class="chakra-stack css-193rmy8"
+                  class="chakra-stack css-yvctne"
                   role="img"
                 >
                   <svg
@@ -843,7 +843,7 @@ exports[`Home page matches snapshot 1`] = `
                   </svg>
                 </span>
                 <h3
-                  class="chakra-heading css-1tapsqs"
+                  class="chakra-heading css-1hqqclp"
                 >
                   Bob
                 </h3>
