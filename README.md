@@ -1,8 +1,8 @@
 # Checkout Test
 
-This application is a demonstration of the requirements provided in the checkout.com front-end developer interview. The application is built using Chakra-UI due to the strong accessibility it provides, Formik and Yup for form creation and validation, and react-vis for data visualization. For error tracking and logging, Sentry has been included as a dependency. Breadcrumbs will be automatically logged prior to an error via the Next.JS integration provided by Sentry.
+This application is a demonstration of the requirements provided in the checkout.com front-end developer interview. The application is built using Chakra-UI due to the strong accessibility it provides, Formik and Yup for form creation and validation, and react-vis for data visualization.
 
-For production applications, implementing Sentry on the back-end would provide much better tracing of issues across FE and BE. Static code analysis has also been added to align with best practices.
+For error tracking and logging, Sentry has been included as a dependency. Breadcrumbs will be automatically logged prior to an error via the Next.JS integration provided by Sentry. Static code analysis in a GitHub action has also been added to align with best practices around security.
 
 Additionally, it would have been nice to add i18n with [react-i18next](https://react.i18next.com/), as well as potentially move the custom star components into a chakra-ui theme definition, sadly I didn't have the time alongside my current timetable.
 
@@ -17,6 +17,7 @@ The project is broken into distinct folders, as defined below:
 -   `types`: Type definitions grouped by domain, along with validation schemas for them.
 -   `views`: Isolated components, designed with specific functions but not as re-usable or composable like components. These typically handle their own lifecycle, while providing a clear area for testing.
 -   `utils`: Utility functions, grouped by domain.
+-   `.github/workflows`: Pipeline YML files built for GitHub actions.
 
 ## To Run
 
@@ -28,7 +29,7 @@ You will need the following environment variables declared:
 -   `SENTRY_ORG`: Organization the Sentry project belongs to.
 -   `SENTRY_PROJECT`: Name of the project in Sentry.
 
-The available commands are available:
+First, run `yarn install` to pull down the required packages. Then, the available commands are available:
 
 -   Start Dev Server: `yarn dev`
 -   Run Build: `yarn build`

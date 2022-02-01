@@ -53,7 +53,7 @@ export const RatingInput = (props: RatingInputProps) => {
 
                 return (
                     <RatingInputButton
-                        key={index}
+                        key={star}
                         highlighted={star < parsedCurrentValue}
                         {...getRadioProps({ value: `${star}` })}
                     />

@@ -4,7 +4,6 @@ const { withSentryConfig } = require('@sentry/nextjs');
 
 const nextConfig = {
     reactStrictMode: true,
-    distDir: 'build',
 };
 
 const moduleExports = {
