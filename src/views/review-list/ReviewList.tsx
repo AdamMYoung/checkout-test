@@ -1,6 +1,6 @@
 import { Divider, Grid, HStack, Stack, StackProps } from '@chakra-ui/react';
 import dayjs from 'dayjs';
-import { FC } from 'react';
+import { FC, VFC } from 'react';
 
 import { Comment, CommentAuthor, CommentDate, CommentRating, CommentText } from '../../components';
 import { Review } from '../../types';
@@ -12,7 +12,7 @@ type ReviewListProps = StackProps & {
 /**
  * Component to render a list of reviews provided via props.
  */
-export const ReviewList: FC<ReviewListProps> = ({ reviews, children, ...rest }) => {
+export const ReviewList: VFC<ReviewListProps> = ({ reviews, children, ...rest }) => {
     return (
         <Stack spacing="8" divider={<Divider />}>
             {reviews.map((review) => (
@@ -29,7 +29,6 @@ export const ReviewList: FC<ReviewListProps> = ({ reviews, children, ...rest }) 
                     <CommentText>{review.comment}</CommentText>
                 </Comment>
             ))}
-            {children}
         </Stack>
     );
 };
