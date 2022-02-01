@@ -67,9 +67,7 @@ exports[`RatingChart matches snapshot 1`] = `
                 dy="0.72em"
                 text-anchor="middle"
                 transform="translate(0, 14)"
-              >
-                -1
-              </text>
+              />
             </g>
             <g
               class="rv-xy-plot__axis__tick"
@@ -87,9 +85,7 @@ exports[`RatingChart matches snapshot 1`] = `
                 dy="0.72em"
                 text-anchor="middle"
                 transform="translate(0, 14)"
-              >
-                -1
-              </text>
+              />
             </g>
             <g
               class="rv-xy-plot__axis__tick"
@@ -107,9 +103,7 @@ exports[`RatingChart matches snapshot 1`] = `
                 dy="0.72em"
                 text-anchor="middle"
                 transform="translate(0, 14)"
-              >
-                0
-              </text>
+              />
             </g>
             <g
               class="rv-xy-plot__axis__tick"
@@ -127,9 +121,7 @@ exports[`RatingChart matches snapshot 1`] = `
                 dy="0.72em"
                 text-anchor="middle"
                 transform="translate(0, 14)"
-              >
-                0
-              </text>
+              />
             </g>
             <g
               class="rv-xy-plot__axis__tick"

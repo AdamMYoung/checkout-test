@@ -35,9 +35,15 @@ describe('reviewsToStarRatings', () => {
 });
 
 describe('tickToIntegerFormat', () => {
-    it('parses the provided value correctly', () => {
-        const tick = tickIntegerFormat(0.7);
+    it('parses the provided integer correctly', () => {
+        const tick = tickIntegerFormat(1);
 
         expect(tick).toEqual('1');
+    });
+
+    it('parses the invalid float correctly', () => {
+        const tick = tickIntegerFormat(1.5);
+
+        expect(tick).toEqual('');
     });
 });

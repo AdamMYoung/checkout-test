@@ -132,7 +132,12 @@ export const ReviewForm: VFC<StackProps> = (props) => {
                         </Field>
 
                         <Box>
-                            <Button colorScheme="green" type="submit" isDisabled={!formProps.isValid}>
+                            <Button
+                                width={['full', null, 'auto']}
+                                colorScheme="green"
+                                type="submit"
+                                isDisabled={!formProps.isValid}
+                            >
                                 Submit
                             </Button>
                         </Box>

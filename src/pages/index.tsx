@@ -81,9 +81,11 @@ const Home: NextPage<HomeProps> = ({ reviews }) => {
                         </Heading>
                         <ReviewList reviews={visibleReviews} />
                         {hasMoreReviews && (
-                            <Button colorScheme="blue" onClick={loadMoreReviews}>
-                                Show More
-                            </Button>
+                            <Box>
+                                <Button width={['full', null, 'auto']} colorScheme="blue" onClick={loadMoreReviews}>
+                                    Show More
+                                </Button>
+                            </Box>
                         )}
                     </Stack>
                 </Stack>

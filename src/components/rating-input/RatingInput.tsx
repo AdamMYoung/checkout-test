@@ -76,9 +76,10 @@ export const RatingInputButton: FC<RatingInputButtonProps> = ({ highlighted, ...
                 {...getCheckboxProps()}
                 boxSize={6}
                 cursor="pointer"
+                transition="all 0.15s"
                 color={highlighted ? 'yellow.400' : 'gray.400'}
                 _hover={{ color: 'yellow.400' }}
-                _focus={{ boxShadow: 'outline' }}
+                _focus={{ boxShadow: 'outline', borderRadius: 'xl' }}
                 _checked={{ color: 'yellow.400' }}
             />
         </Box>

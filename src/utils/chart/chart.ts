@@ -27,10 +27,10 @@ export const reviewsToStarRatings = (reviews: Review[]): StarRatings => {
 };
 
 /**
- * Formatter used by react-vis to format the tick labels on a chart. Rounds the provided value to the nearest whole number.
+ * Formatter used by react-vis to format the tick labels on a chart. Only displays the label if it's an integer, otherwise returns an empty string.
  * @param val Number to parse.
  * @returns A rounded string variant of the value provided.
  */
 export const tickIntegerFormat = (val: number): string => {
-    return Math.round(val).toString();
+    return Math.round(val) === val ? val.toString() : '';
 };
