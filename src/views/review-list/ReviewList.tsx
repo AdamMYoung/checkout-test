@@ -9,6 +9,9 @@ type ReviewListProps = StackProps & {
     reviews: Review[];
 };
 
+/**
+ * Component to render a list of reviews provided via props.
+ */
 export const ReviewList: FC<ReviewListProps> = ({ reviews, children, ...rest }) => {
     return (
         <Stack spacing="8" divider={<Divider />}>
