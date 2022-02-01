@@ -32,5 +32,5 @@ export const reviewsToStarRatings = (reviews: Review[]): StarRatings => {
  * @returns A rounded string variant of the value provided.
  */
 export const tickIntegerFormat = (val: number): string => {
-    return Math.round(val) === val ? val.toString() : '';
+    return Math.round(val).toString();
 };

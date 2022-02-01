@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ObjectSchema } from 'yup';
+import { ObjectSchema, ValidationError } from 'yup';
 import { ObjectShape } from 'yup/lib/object';
 import pino from 'pino';
 
@@ -35,12 +35,18 @@ export function validationMiddleware<TSchema extends ObjectShape>(validator: Obj
         const { body } = req;
 
         try {
-            await validator.validate(JSON.parse(body));
+            const parsedBody = JSON.parse(body);
+            await validator.validate(parsedBody);
             logger.info('Validation successful');
-            next(body);
+            next(parsedBody);
         } catch (e) {
-            logger.warn('Validation error', e);
-            res.status(422).json({ errors: e });
+            if (e instanceof ValidationError) {
+                logger.warn('Validation error', e);
+                res.status(422).json({ errors: e.errors });
+                return;
+            }
+
+            res.send(500);
         }
     };
 }

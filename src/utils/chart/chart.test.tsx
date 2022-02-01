@@ -1,3 +1,4 @@
+import { tickIntegerFormat } from '.';
 import { reviewsToStarRatings } from '..';
 import { Review } from '../../types';
 
@@ -34,5 +35,9 @@ describe('reviewsToStarRatings', () => {
 });
 
 describe('tickToIntegerFormat', () => {
-    it('parses the provided value correctly', () => {});
+    it('parses the provided value correctly', () => {
+        const tick = tickIntegerFormat(0.7);
+
+        expect(tick).toEqual('1');
+    });
 });
