@@ -8,7 +8,7 @@ const NotFound = () => {
         <Box height="100vh">
             <Center>
                 <Stack spacing="8">
-                    <Heading>The page you're looking for can't be found.</Heading>
+                    <Heading>{"The page you're looking for can't be found."}</Heading>
                     <Box>
                         <Button colorScheme="green" onClick={() => router.replace('/')}>
                             Go Home
