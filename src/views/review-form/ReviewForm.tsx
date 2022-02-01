@@ -99,12 +99,12 @@ export const ReviewForm: VFC<StackProps> = (props) => {
 
                             {/* Rating */}
                             <Field name="rating">
-                                {({ form, meta }: FieldProps) => (
+                                {({ field, form, meta }: FieldProps) => (
                                     <FormControl id="rating" isRequired isInvalid={meta.touched && !!meta.error}>
                                         <FormLabel>Rating</FormLabel>
                                         <RatingInput
                                             aria-label="Rating"
-                                            value={form.values.rating}
+                                            {...field}
                                             onChange={(rating) => form.setFieldValue('rating', rating)}
                                         />
                                         <FormHelperText>Please give your honest rating.</FormHelperText>
